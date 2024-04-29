@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        black1: "rgba(0,0,0,0.8)",
+        // banner: "#B7E5B4"
+        banner: "#FDFFC2"
+      },
+      fontFamily: {
+        title: "gt-super,Georgia,Cambria,Times New Roman,Times,serif",
+        texts: "sohne,Helvetica Neue,Helvetica,Arial,sans-serif"
+      },
+      gridTemplateColumns: {
+        card: "repeat(auto-fit,minmax(280px,1fr))",
+      }
+    },
   },
   plugins: [],
 }
