@@ -4,18 +4,20 @@ import Home from "./components/home/Home"
 import Entry from "./components/entry/Entry"
 import HomeHeader from "./components/home/HomeHeader"
 import EntryHeader from "./components/entry/EntryHeader"
+import { Navigate } from "react-router-dom"
 
 function App() {
-  const auth = false
+  const currentUser = false
 
 
 
   return (
     <>
-      {auth ? <HomeHeader /> : <EntryHeader />}
+      {currentUser ? <HomeHeader /> : <EntryHeader />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/entry" element={<Entry />} />
+        {currentUser && <Route path="/" element={<Home />} />}
+        {!currentUser && <Route path="/entry" element={<Entry />} />}
+        <Route path="*" element={<Navigate to={!currentUser ? "/entry" : "/"} />} />
       </Routes>
     </>
   )
