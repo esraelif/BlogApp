@@ -34,11 +34,11 @@ const Auth = ({ modal, setModal }) => {
         try {
             const createUser = await signInWithPopup(auth, provider)
             const newUser = createUser.user;
-            const ref = doc(db, "users", newUser.uid)
+            const ref = doc(db, "users", user.uid)
             const userDoc = await getDoc(ref)
             if (!userDoc.exists()) {
                 await setDoc(ref, {
-                    userId: newUser.uid,
+                    userId: user.uid,
                     username: newUser.displayName,
                     email: newUser.email,
                     userImg: newUser.photoURL,
@@ -79,7 +79,7 @@ const Auth = ({ modal, setModal }) => {
                                 <button
                                     onClick={() => setCreateUser(!createUser)}
                                     className='text-green-600 hover:text-green-700 font-bold ml-1'>{createUser ? "Sign In" : "Create One"}</button></p>
-                        </>) : signReq === "sign-in" ? (<SignIn setSignReq={setSignReq} />) : signReq === "sign-up" ? (<SignUp setSignReq={setSignReq} />) : null}
+                        </>) : signReq === "sign-in" ? (<SignIn setModal={setModal} setSignReq={setSignReq} />) : signReq === "sign-up" ? (<SignUp setModal={setModal} setSignReq={setSignReq} />) : null}
                         <p className='md:w-[30rem] mx-auto text-center text-sm mb-[3rem]'>
                             Click "Sign In" to agree to TalkTogether's Terms of Service and acknowledge that TalkTogether's Privacy Policy applies to you.
                         </p>

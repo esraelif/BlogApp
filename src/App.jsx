@@ -6,7 +6,7 @@ import HomeHeader from "./components/home/HomeHeader"
 import EntryHeader from "./components/entry/EntryHeader"
 import { Navigate } from "react-router-dom"
 import { Blog } from "./Context/Context"
-
+import { ToastContainer } from "react-toastify"
 function App() {
   const { currentUser } = Blog();
 
@@ -15,6 +15,7 @@ function App() {
   return (
     <>
       {currentUser ? <HomeHeader /> : <EntryHeader />}
+      <ToastContainer />
       <Routes>
         {currentUser && <Route path="/" element={<Home />} />}
         {!currentUser && <Route path="/entry" element={<Entry />} />}
