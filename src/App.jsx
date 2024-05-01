@@ -5,9 +5,10 @@ import Entry from "./components/entry/Entry"
 import HomeHeader from "./components/home/HomeHeader"
 import EntryHeader from "./components/entry/EntryHeader"
 import { Navigate } from "react-router-dom"
+import { Blog } from "./Context/Context"
 
 function App() {
-  const currentUser = false
+  const { currentUser } = Blog();
 
 
 

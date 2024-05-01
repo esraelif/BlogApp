@@ -7,6 +7,11 @@ import { AiOutlineMail } from "react-icons/ai";
 import { useState } from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import { signInWithPopup } from "firebase/auth"
+import { auth, db, provider } from '../../../firebase/firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const Button = ({ icon, text, click }) => {
     return (
@@ -21,10 +26,32 @@ const Button = ({ icon, text, click }) => {
 const Auth = ({ modal, setModal }) => {
     const [createUser, setCreateUser] = useState(false);
     const [signReq, setSignReq] = useState("");
+    const navigate = useNavigate()
 
     const hidden = `modal ? "visible opacity-100" : "invisible opacity-0"}
    `
-
+    const googleAuth = async () => {
+        try {
+            const createUser = await signInWithPopup(auth, provider)
+            const newUser = createUser.user;
+            const ref = doc(db, "users", newUser.uid)
+            const userDoc = await getDoc(ref)
+            if (!userDoc.exists()) {
+                await setDoc(ref, {
+                    userId: newUser.uid,
+                    username: newUser.displayName,
+                    email: newUser.email,
+                    userImg: newUser.photoURL,
+                    bio: "",
+                })
+                navigate("/")
+                toast.success("User have been Signed in")
+                setModal(false);
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
     return (
         <>
             <Modal modal={modal} setModal={setModal} hidden={hidden}>
@@ -37,7 +64,9 @@ const Auth = ({ modal, setModal }) => {
                         {signReq === "" ? (<>
                             <h2 className='text-2xl pt-[5rem]'>{createUser ? "Join Us" : "Welcome Back"}</h2>
                             <div className='flex flex-col gap-2 w-fit mx-auto '>
-                                <Button icon={<FcGoogle className='text-xl' />} text={`${createUser ? "Sign Up" : "Sign In"} With Google`} />
+                                <Button
+                                    click={googleAuth}
+                                    icon={<FcGoogle className='text-xl' />} text={`${createUser ? "Sign Up" : "Sign In"} With Google`} />
                                 <Button
 
                                     icon={<MdFacebook className='text-xl text-blue-600' />} text={`${createUser ? "Sign Up" : "Sign In"} With Facebook`} />
