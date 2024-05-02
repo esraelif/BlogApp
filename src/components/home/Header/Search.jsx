@@ -1,11 +1,11 @@
 import React from 'react';
 
-const HomeHeader = () => {
+const Search = () => {
     return (
         <div>
-            homeheader
+            search
         </div>
     );
 }
 
-export default HomeHeader;
+export default Search;

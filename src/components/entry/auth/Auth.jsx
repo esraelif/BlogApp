@@ -33,7 +33,7 @@ const Auth = ({ modal, setModal }) => {
     const googleAuth = async () => {
         try {
             const createUser = await signInWithPopup(auth, provider)
-            const newUser = createUser.user;
+            const newUser = createUser.user.providerData[0];
             const ref = doc(db, "users", user.uid)
             const userDoc = await getDoc(ref)
             if (!userDoc.exists()) {
