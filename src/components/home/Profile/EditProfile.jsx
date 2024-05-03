@@ -125,7 +125,7 @@ const EditProfile = ({ editModal, setEditModal, getUserData }) => {
                     />
                     <p className="text-sm text-gray-600 pt-2">
                         Appears on your Profile page, as your byline, and in your responses.
-                        {form.username.length}/50
+                        {form.username.length}/60
                     </p>
                     <section className="pt-[1rem] text-sm">
                         <label className="pb-3 block" htmlFor="">

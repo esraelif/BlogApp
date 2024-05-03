@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom"
 import { Blog } from "./Context/Context"
 import { ToastContainer } from "react-toastify"
 import Profile from "./components/home/Profile/Profile"
+import Write from "./components/home/Write/Write"
 function App() {
   const { currentUser } = Blog();
 
@@ -21,6 +22,7 @@ function App() {
         {currentUser && <Route path="/" element={<Home />} />}
         {!currentUser && <Route path="/entry" element={<Entry />} />}
         <Route path="/profile/:userId" element={<Profile />} />
+        <Route path="/write" element={<Write />} />
         <Route path="*" element={<Navigate to={!currentUser ? "/entry" : "/"} />} />
       </Routes>
     </>
