@@ -13,7 +13,7 @@ const SignIn = ({ setSignReq }) => {
         password: ""
     })
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

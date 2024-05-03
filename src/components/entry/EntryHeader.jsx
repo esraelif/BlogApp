@@ -4,7 +4,7 @@ import talktogetherLogo from '../../assets/talktogether.png';
 import { nav } from '../../data/Data';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import Auth from './auth/Auth';
+import Auth from './Auth/Auth';
 
 const EntryHeader = () => {
     const [isActive, setIsActive] = useState(false)

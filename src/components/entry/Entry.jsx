@@ -1,8 +1,8 @@
 import React from 'react';
 import Banner from './Banner';
-import Trending from './auth/Trending';
+import Trending from './Auth/Trending';
 import Posts from '../Common/posts/Posts';
-import Discover from './auth/Discover';
+import Discover from './Auth/Discover';
 
 const Entry = () => {
     return (

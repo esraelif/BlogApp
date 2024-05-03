@@ -1,5 +1,5 @@
 import React from 'react';
-import { LiaEditSolid, LiaUserSolid } from "react-icons/lia"
+import { LiaEditSolid, LiaTimesSolid, LiaUserSolid } from "react-icons/lia"
 import { MdOutlineLocalLibrary } from "react-icons/md"
 import { BiSpreadsheet } from "react-icons/bi"
 import { HiOutlineChartBar } from "react-icons/hi"
@@ -8,7 +8,8 @@ import { Blog } from '../../../Context/Context';
 import { Link } from 'react-router-dom';
 import { secretEmail } from '../../../utils/Helper';
 
-const UserModal = () => {
+const UserModal = (setModal) => {
+
     const { currentUser } = Blog()
     const userModal = [
         {
@@ -32,10 +33,11 @@ const UserModal = () => {
             path: "/stats",
         },
     ]
+    // console.log("usermodal")
     return (
-        <section className='absolute w-[18rem] p-6 bg-white right-0 top-[100%] shadows rounded-md <-50 text-gray-500'>
+        <section className='absolute w-[18rem] p-6 bg-white right-0 top-0 shadows rounded-md <-50 text-gray-500'>
             <Link to="/write" className='md:hidden flex items-center gap-1 text-gray-500'>
-                <span className='text-3xl'>
+                <span className='text-3xl' >
                     <LiaEditSolid />
                 </span>
                 <span className='text-sm mt-2'>
@@ -43,8 +45,11 @@ const UserModal = () => {
                 </span>
             </Link>
             <div className='flex flex-col gap-4 border-b border-gray-300 pb-5'>
+
                 {userModal.map((link, i) => (
-                    <Link key={i} path={link.path} className='flex items-center gap-2 text-gray-500 hover:text-black/70'>
+                    <Link
+                        onClick={() => setModal(false)}
+                        key={i} to={link.path} className='flex items-center gap-2 text-gray-500 hover:text-black/70'>
                         <span className="text-2xl">{link.icon}</span>
                         <h2 className='text-md'>{link.title}</h2>
                     </Link>

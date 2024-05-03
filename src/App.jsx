@@ -7,6 +7,7 @@ import EntryHeader from "./components/entry/EntryHeader"
 import { Navigate } from "react-router-dom"
 import { Blog } from "./Context/Context"
 import { ToastContainer } from "react-toastify"
+import Profile from "./components/home/Profile/Profile"
 function App() {
   const { currentUser } = Blog();
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         {currentUser && <Route path="/" element={<Home />} />}
         {!currentUser && <Route path="/entry" element={<Entry />} />}
+        <Route path="/profile/:userId" element={<Profile />} />
         <Route path="*" element={<Navigate to={!currentUser ? "/entry" : "/"} />} />
       </Routes>
     </>
