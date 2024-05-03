@@ -1,17 +1,20 @@
-import React from 'react';
+import React from "react";
+import Loading from "../../loading/Loading";
+import PostsCard from "./PostCard";
+import { Blog } from "../../../Context/Context";
 
 const Posts = () => {
+    const { postData, postLoading } = Blog();
     return (
-        <div>
-            <h1>posts</h1>
-            <h1>posts</h1>
-            <h1>posts</h1>
-            <h1>posts</h1>
-            <h1>posts</h1>
-            <h1>posts</h1>
-            <h1>posts</h1>
-        </div>
+        <section className="flex flex-col gap-[2.5rem]">
+            {postLoading ? (
+                <Loading />
+            ) : (
+                postData &&
+                postData?.map((post, i) => <PostsCard post={post} key={i} />)
+            )}
+        </section>
     );
-}
+};
 
 export default Posts;
