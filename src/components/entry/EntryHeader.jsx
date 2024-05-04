@@ -7,46 +7,55 @@ import { useEffect } from 'react';
 import Auth from './Auth/Auth';
 
 const EntryHeader = () => {
-    const [isActive, setIsActive] = useState(false)
-    const [modal, setModal] = useState(false)
+    const [isActive, setIsActive] = useState(false);
+    const { authModel, setAuthModel } = Blog();
+
     useEffect(() => {
         const scrollMe = () => {
-            window.scrollY > 50 ? setIsActive(true) : setIsActive(false)
+            window.scrollY > 50 ? setIsActive(true) : setIsActive(false);
         };
-        window.addEventListener("scroll", scrollMe)
-    }, [])
+        window.addEventListener("scroll", scrollMe);
+    }, []);
     return (
         <header
-            className={`border-b border-black p-5 sticky top-0 z-50
-        ${isActive ? "bg-white" : "bg-banner"}
-        transition-all duration-500`
-            }>
-            <div className='size h-[90px] flex item-center justify-between'>
-                <Link to="/">
-                    <img className='h-[4rem] ' src={talktogetherLogo} alt="logo" />
+            className={`border-b border-black sticky top-0 z-50 
+    ${isActive ? "bg-white" : "bg-banner"}
+    transition-all duration-500`}>
+            <div className="size h-[70px] flex items-center justify-between">
+                <Link to={"/"}>
+                    <img
+                        className="h-[2.5rem]"
+                        src="https://miro.medium.com/v2/resize:fit:8978/1*s986xIGqhfsN8U--09_AdA.png"
+                        alt="logo"
+                    />
                 </Link>
-                <div className='flex items-center gap-5'>
-                    <div className='hidden text-lg font-medium sm:flex items-center gap-5'>
+                <div className="flex items-center gap-5">
+                    <div className="hidden text-sm sm:flex items-center gap-5">
                         {nav.map((link, i) => (
-                            <Link key={i} to={link.path}>{link.title}</Link>
+                            <Link key={i} to={link.path}>
+                                {link.title}
+                            </Link>
                         ))}
                     </div>
-                    <div className='relative'>
+                    <div className="relative">
                         <button
-                            onClick={() => setModal(true)}
-                            className='hidden text-lg sm:flex font-medium items-center gap-5'>Sign In</button>
-                        <Auth modal={modal} setModal={setModal} />
+                            onClick={() => setAuthModel(true)}
+                            className="hidden text-sm sm:flex items-center gap-5">
+                            Sign In
+                        </button>
+                        <Auth modal={authModel} setModal={setAuthModel} />
                     </div>
                     <button
-                        onClick={() => setModal(true)}
-                        className={`bg-black text-white rounded-full px-3 p-2 text-lg font-medium
-                    ${isActive ? "bg-[#54c847]" : "bg-black"}`}>Get Started</button>
+                        onClick={() => setAuthModel(true)}
+                        className={`text-white rounded-full px-3 p-2 text-sm font-medium
+            ${isActive ? "bg-green-700" : "bg-black"}
+            `}>
+                        Get Started
+                    </button>
                 </div>
-
             </div>
-
         </header>
     );
-}
+};
 
 export default EntryHeader;

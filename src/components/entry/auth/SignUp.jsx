@@ -6,70 +6,83 @@ import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = ({ setSignReq, setModal }) => {
-    const navigate = useNavigate()
-    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
         username: "",
         email: "",
         password: "",
-        repassword: "",
-
+        rePassword: "",
     });
-    console.log("submit")
+
     const handleSubmit = async (e) => {
-        e.perventDefault();
-        console.log(form)
-        if (form[("username", "email", "password", "repassword")] === "") {
-            toast.error("All fields are required")
-        }
-        else if (form["password"] !== form["repassword"]) {
-            toast.error("Your password are not matching")
+        e.preventDefault();
+        if (form[("username", "email", "password", "rePassword")] === "") {
+            toast.error("All fields are required");
+        } else if (form["password"] !== form["rePassword"]) {
+            toast.error("Your passwords are not matching!!");
+            return;
         } else {
-            setLoading(true)
+            setLoading(true);
             const { user } = await createUserWithEmailAndPassword(
                 auth,
                 form.email,
-                form.password);
+                form.password
+            );
 
-            const ref = doc(db, "users", newUser.uid)
-            const userDoc = await getDoc(ref)
+            const ref = doc(db, "users", user.uid);
+            const userDoc = await getDoc(ref);
+
             if (!userDoc.exists()) {
                 await setDoc(ref, {
-                    userId: form.uid,
+                    userId: user.uid,
                     username: form.username,
                     email: form.email,
                     userImg: "",
                     bio: "",
-                })
-                navigate("/")
-                toast.success("User have been Signed in")
+                    created: Date.now(),
+                });
+                navigate("/");
+                toast.success("New Account has been Created");
                 setModal(false);
-                setLoading(false)
+                setLoading(false);
             }
-
-
         }
+    };
 
-    }
     return (
-        <div className='size mt-[6rem] text-center'>
-            <h2 className='text-3xl'> Sign up with email</h2>
-            <p className='w-full sm:w-[25rem] mx-auto py-[3rem]'>Enter the email address associated with your account, and we'll send a magic link to your inbox</p>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-                <Input form={form} setform={setForm} type="text" title="username" />
-                <Input form={form} setform={setForm} type="email" title="email" />
-                <Input form={form} setform={setForm} type="password" title="password" />
-                <Input form={form} setform={setForm} type="password" title="rePassword" />
-                <button className='px-4 py-1 text-sm rounded-full bg-green-700 hover:bg-green-900 text-white w-fit mx-auto'>Sign Up</button>
+        <div className="size mt-[6rem] text-center">
+            <h2 className="text-3xl">Sign up with email</h2>
+            <p className="w-full sm:w-[25rem] mx-auto py-[3rem]">
+                Enter the email address associated with your account, and we’ll send a
+                magic link to your inbox.
+            </p>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <Input form={form} setForm={setForm} type="text" title="username" />
+                <Input form={form} setForm={setForm} type="email" title="email" />
+                <Input form={form} setForm={setForm} type="password" title="password" />
+                <Input
+                    form={form}
+                    setForm={setForm}
+                    type="password"
+                    title="rePassword"
+                />
+                <button
+                    className={`first-letter:px-4 py-1 text-sm rounded-full bg-green-700
+          hover:bg-green-800 text-white w-fit mx-auto
+          ${loading ? "opacity-50 pointer-events-none" : ""}`}>
+                    Sign Up
+                </button>
             </form>
             <button
                 onClick={() => setSignReq("")}
-                className={`mt-5 text-sm text-green-600 hover:text-green-700 flex items-center mx-auto
-                ${loading ? "opacity-50 pointer-events-none" : ""}`}>
-                <MdKeyboardArrowLeft /> All Sign Up Options
+                className="mt-5 text-sm text-green-600 hover:text-green-700
+        flex items-center mx-auto">
+                <MdKeyboardArrowLeft />
+                All sign Up Options
             </button>
-
         </div>
     );
-}
+};
+
 export default SignUp;

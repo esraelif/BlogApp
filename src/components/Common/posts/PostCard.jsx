@@ -6,7 +6,7 @@ import { Blog } from "../../../Context/Context";
 import Actions from "./Actions/Actions";
 import { useNavigate } from "react-router-dom";
 
-const PostsCard = ({ post }) => {
+const PostsCard = (post) => {
     const { title, desc, created, postImg, id: postId, userId, username } = post;
     const { currentUser } = Blog();
 

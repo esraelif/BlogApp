@@ -8,7 +8,7 @@ const Write = () => {
     const [title, setTitle] = useState("");
     const { publish, setPublish } = Blog();
     return (
-        <section className="w-[90%] md:w-[80%] lg:w-[60%] mx-auto py-[3rem]">
+        <section className="w-[90%] md:w-[90%] lg:w-[60%] mx-auto py-[3rem]">
             <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -20,7 +20,7 @@ const Write = () => {
                 theme="bubble"
                 value={description}
                 onChange={setDescription}
-                placeholder="Tell Us Your Story..."
+                placeholder="Tell Your Story..."
                 className="write my-5"
             />
             <div

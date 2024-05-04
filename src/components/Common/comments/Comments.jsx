@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 import useSingleFetch from "../../hooks/useSingleFetch";
-import Loading from "../../Loading/Loading";
+import Loading from "../../loading/Loading";
 import Comment from "./Comment";
 
 const Comments = ({ postId }) => {
@@ -52,9 +52,9 @@ const Comments = ({ postId }) => {
         <Modal setModal={setShowComment} modal={showComment}>
             <section
                 className={`fixed top-0 right-0 bottom-0 z-50 bg-white w-[22rem] shadows p-5
-        overflow-y-auto transition-all duration-500
-        ${showComment ? "translate-x-0" : "translate-x-[23rem]"}
-      `}>
+          overflow-y-auto transition-all duration-500
+          ${showComment ? "translate-x-0" : "translate-x-[23rem]"}
+        `}>
                 {/* header  */}
                 <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold">Responses({data.length})</h3>

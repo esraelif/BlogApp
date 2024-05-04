@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Blog } from "../../Context/Context";
 import Loading from "../loading/Loading";
-import PostsCard from "../Common/Posts/PostsCard";
+import PostCard from "../Common/posts/PostCard";
 
 const FilterPost = () => {
     const { tag } = useParams();
@@ -23,7 +23,7 @@ const FilterPost = () => {
                 ) : (
                     <div className="lg:max-w-[60%] flex flex-col gap-[2rem]">
                         {filteredData &&
-                            filteredData.map((post, i) => <PostsCard post={post} key={i} />)}
+                            filteredData.map((post, i) => <PostCard post={post} key={i} />)}
                     </div>
                 )}
             </div>

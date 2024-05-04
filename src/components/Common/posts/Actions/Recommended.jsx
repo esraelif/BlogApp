@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../../hooks/useFetch";
-import { readTime } from "../.././../utils/Helper";
+import { readTime } from "../../../../utils/Helper";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 

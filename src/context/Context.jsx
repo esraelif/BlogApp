@@ -55,6 +55,13 @@ const Context = ({ children }) => {
     }, []);
 
     const { data: postData, loading: postLoading } = useFetch("posts");
+    if (postLoading) {
+        return <Loading />; // Eğer veri yükleniyorsa, yüklenme animasyonu göster
+    }
+
+    if (!postData) {
+        return <div>No data found!</div>; // Eğer postData tanımlı değilse, uygun bir mesaj göster
+    }
 
     return (
         <BlogContext.Provider
@@ -79,8 +86,9 @@ const Context = ({ children }) => {
                 postLoading,
                 authModel,
                 setAuthModel,
-            }}>
-            {loading ? <Loading /> : children}
+            }}
+        >
+            {children}
         </BlogContext.Provider>
     );
 };

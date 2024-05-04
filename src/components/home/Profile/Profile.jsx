@@ -57,11 +57,11 @@ const Profile = () => {
                         <div
                             key={i}
                             className={`py-[0.5rem]
-            ${item.title === currentActive.title
+              ${item.title === currentActive.title
                                     ? "border-b border-gray-500"
                                     : ""
                                 }
-            `}>
+              `}>
                             <button onClick={() => setCurrentActive(item)}>
                                 {item.title}
                             </button>
@@ -77,16 +77,16 @@ const Profile = () => {
             <button
                 onClick={() => setModal(true)}
                 className="fixed top-[8rem] right-0 w-[2rem] h-[2rem] bg-black text-white
-        grid place-items-center md:hidden">
+          grid place-items-center md:hidden">
                 <IoSettingsSharp />
             </button>
             {/* user details  */}
             <Modal modal={modal} setModal={setModal}>
                 <div
                     className={`flex-[1] border-l border-gray-300 p-[2rem] z-10
-        fixed right-0 bottom-0 top-0 w-[18rem] bg-white md:sticky
-        ${modal ? "translate-x-0" : "translate-x-[100%] md:translate-x-0"}
-        transition-all duration-500`}>
+          fixed right-0 bottom-0 top-0 w-[18rem] bg-white md:sticky
+          ${modal ? "translate-x-0" : "translate-x-[100%] md:translate-x-0"}
+          transition-all duration-500`}>
                     {/* icons to close out modal  */}
                     <div className="pb-4 text-right">
                         <button
