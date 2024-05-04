@@ -6,7 +6,7 @@ const ProfileAbout = ({ getUserData, setEditModal }) => {
     return (
         <div className="w-full">
             <p className="text-2xl first-letter:uppercase">
-                {getUserData?.bio || getUserData?.username + " has no bio"}
+                {getUserData?.bio || getUserData?.username + " Has no bio"}
             </p>
             <div className="text-right">
                 {currentUser?.uid === getUserData.userId && (

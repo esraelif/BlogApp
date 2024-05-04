@@ -1,6 +1,6 @@
 import React from "react";
 import Loading from "../../loading/Loading";
-import PostsCard from "./PostCard";
+import PostCard from "./PostCard";
 import { Blog } from "../../../Context/Context";
 
 const Posts = () => {
@@ -13,7 +13,7 @@ const Posts = () => {
                 <Loading />
             ) : (
                 postData &&
-                postData?.map((post, i) => <PostsCard post={post} key={i} />)
+                postData?.map((post, i) => <PostCard post={post} key={i} />)
 
             )}
 
