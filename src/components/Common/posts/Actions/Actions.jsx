@@ -7,7 +7,20 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../../../firebase/firebase";
 import { toast } from "react-toastify";
 
+
+const Button = ({ click, title }) => {
+    return (
+        <button
+            onClick={click}
+            className={`p-2 hover:bg-gray-100 hover:text-black/80 w-full text-sm text-left
+    ${title === "Delete Story" ? "text-red-600" : ""}
+    `}>
+            {title}
+        </button>
+    );
+};
 const Actions = ({ postId, title, desc }) => {
+
     const { setUpdateData, currentUser } = Blog();
     const [showDrop, setShowDrop] = useState(false);
     const handleClick = () => {
@@ -60,14 +73,3 @@ const Actions = ({ postId, title, desc }) => {
 
 export default Actions;
 
-const Button = ({ click, title }) => {
-    return (
-        <button
-            onClick={click}
-            className={`p-2 hover:bg-gray-100 hover:text-black/80 w-full text-sm text-left
-    ${title === "Delete Story" ? "text-red-600" : ""}
-    `}>
-            {title}
-        </button>
-    );
-};
