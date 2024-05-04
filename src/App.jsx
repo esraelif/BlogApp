@@ -9,6 +9,9 @@ import { Blog } from "./Context/Context"
 import { ToastContainer } from "react-toastify"
 import Profile from "./components/home/Profile/Profile"
 import Write from "./components/home/Write/Write"
+import SinglePost from "./components/Common/posts/SinglePost"
+import EditPost from "./components/Common/posts/EditPost";
+import FilterPost from "./components/Demo/FilterPost";
 function App() {
   const { currentUser } = Blog();
 
@@ -23,6 +26,9 @@ function App() {
         {!currentUser && <Route path="/entry" element={<Entry />} />}
         <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/write" element={<Write />} />
+        <Route path="/post/:postId" element={<SinglePost />} />
+        <Route path="/editPost/:postId" element={<EditPost />} />
+        <Route path="/filter/:tag" element={<FilterPost />} />
         <Route path="*" element={<Navigate to={!currentUser ? "/entry" : "/"} />} />
       </Routes>
     </>
