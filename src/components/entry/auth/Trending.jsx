@@ -9,13 +9,13 @@ const Trending = () => {
     const getTrending =
         postData && postData?.sort((a, b) => b.pageViews - a.pageViews);
     return (
-        <section className="border-b border-gray-600">
+        <section className="border-b border-gray-600 bg-">
             <div className="size py-[2rem]">
                 <div className="flex items-center gap-3 font-semibold">
                     <span>
                         <BsGraphUpArrow />
                     </span>
-                    <h2>Trending on Medium</h2>
+                    <h2>Trending on TalkTogether</h2>
                 </div>
                 <div className="grid grid-cols-card gap-3">
                     {getTrending &&

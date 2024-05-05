@@ -5,6 +5,7 @@ import { nav } from '../../data/Data';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Auth from './Auth/Auth';
+import { Blog } from '../../Context/Context';
 
 const EntryHeader = () => {
     const [isActive, setIsActive] = useState(false);
@@ -18,14 +19,14 @@ const EntryHeader = () => {
     }, []);
     return (
         <header
-            className={`border-b border-black sticky top-0 z-50 
+            className={`border-b border-black sticky h-[100px] top-0 z-50 
     ${isActive ? "bg-white" : "bg-banner"}
     transition-all duration-500`}>
-            <div className="size h-[70px] flex items-center justify-between">
+            <div className="size h-[100px] flex items-center justify-between">
                 <Link to={"/"}>
                     <img
-                        className="h-[2.5rem]"
-                        src="https://miro.medium.com/v2/resize:fit:8978/1*s986xIGqhfsN8U--09_AdA.png"
+                        className="h-[4rem]"
+                        src={talktogetherLogo}
                         alt="logo"
                     />
                 </Link>

@@ -12,6 +12,7 @@ import { auth, db, provider } from '../../../firebase/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import { LiaTimesSolid } from 'react-icons/lia';
 
 const Auth = ({ modal, setModal }) => {
     const [createUser, setCreateUser] = useState(false);

@@ -40,7 +40,7 @@ const UserModal = ({ setModal }) => {
     const logout = async () => {
         try {
             await signOut(auth);
-            navigate("/demo");
+            navigate("/entry");
             toast.success("User has be logged out");
         } catch (error) {
             toast.error(error.message);

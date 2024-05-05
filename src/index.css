@@ -9,7 +9,7 @@
 ;
 
 body {
-  @apply font-texts;
+  @apply font-texts bg-[#FDFFC2];
 }
 
 ;

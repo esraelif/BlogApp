@@ -4,6 +4,7 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../../firebase/firebase';
 
 const SignUp = ({ setSignReq, setModal }) => {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ const SignUp = ({ setSignReq, setModal }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Form data:", form);
         if (form[("username", "email", "password", "rePassword")] === "") {
             toast.error("All fields are required");
         } else if (form["password"] !== form["rePassword"]) {

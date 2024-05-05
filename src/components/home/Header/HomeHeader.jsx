@@ -13,6 +13,7 @@ import Loading from "../../loading/Loading";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 import { toast } from "react-toastify";
+import talktogetherLogo from "../../../assets/talktogether.png"
 
 const HomeHeader = () => {
     const { allUsers, userLoading, currentUser, setPublish, title, description } =
@@ -52,9 +53,11 @@ const HomeHeader = () => {
                 {/* left side  */}
                 <div className="flex items-center gap-3">
                     <Link to={"/"}>
-                        <span className="text-5xl">
-                            <BsMedium />
-                        </span>
+                        <img
+                            className="h-[4rem]"
+                            src={talktogetherLogo}
+                            alt="logo"
+                        />
                     </Link>
                     <Search modal={searchModal} setModal={setSearchModal} />
                 </div>
