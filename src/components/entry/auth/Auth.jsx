@@ -1,18 +1,19 @@
 import React from 'react';
 import Modal from '../../../utils/Modal';
-import { MdClose } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { MdFacebook } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import { useState } from 'react';
 import SignIn from './SignIn';
-import SignUp from './SignUp';
-import { signInWithPopup, signOut } from "firebase/auth"; // Ekledik
+
+import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, db, provider } from '../../../firebase/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { LiaTimesSolid } from 'react-icons/lia';
+import SignUp from './SignUp';
+
 
 const Auth = ({ modal, setModal }) => {
     const [createUser, setCreateUser] = useState(false);

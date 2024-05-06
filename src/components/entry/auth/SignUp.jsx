@@ -4,7 +4,9 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebase/firebase';
+import { auth, db } from '../../../firebase/firebase';
+import { toast } from 'react-toastify';
+import { doc } from 'firebase/firestore';
 
 const SignUp = ({ setSignReq, setModal }) => {
     const navigate = useNavigate();
@@ -19,6 +21,7 @@ const SignUp = ({ setSignReq, setModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form data:", form);
+        console.log(form.email)
         if (form[("username", "email", "password", "rePassword")] === "") {
             toast.error("All fields are required");
         } else if (form["password"] !== form["rePassword"]) {
@@ -26,7 +29,7 @@ const SignUp = ({ setSignReq, setModal }) => {
             return;
         } else {
             setLoading(true);
-            const { user } = await createUserWithEmailAndPassword(
+            const user = await createUserWithEmailAndPassword(
                 auth,
                 form.email,
                 form.password
@@ -34,6 +37,7 @@ const SignUp = ({ setSignReq, setModal }) => {
 
             const ref = doc(db, "users", user.uid);
             const userDoc = await getDoc(ref);
+            console.log(user)
 
             if (!userDoc.exists()) {
                 await setDoc(ref, {
@@ -70,7 +74,7 @@ const SignUp = ({ setSignReq, setModal }) => {
                     title="rePassword"
                 />
                 <button
-                    className={`first-letter:px-4 py-1 text-sm rounded-full bg-green-700
+                    className={` py-1 text-sm rounded-full bg-green-700
           hover:bg-green-800 text-white w-fit mx-auto
           ${loading ? "opacity-50 pointer-events-none" : ""}`}>
                     Sign Up
